@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Open PR Reviewer
-        uses: yourname/open-pr-reviewer@v0.1.0
+        uses: Lastron2000/open-pr-reviewer@v0.1.0
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
 ```
@@ -37,7 +37,7 @@ automatically, so no extra configuration is needed.
 
 ```yaml
 - name: Run Open PR Reviewer
-  uses: yourname/open-pr-reviewer@v0.1.0
+  uses: Lastron2000/open-pr-reviewer@v0.1.0
   with:
     openai_api_key: ${{ secrets.OPENAI_API_KEY }}
     model: gpt-4o-mini

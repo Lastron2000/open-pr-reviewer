@@ -14,7 +14,7 @@ feature requests, documentation, and code.
 ## Development setup
 
 ```bash
-git clone https://github.com/yourname/open-pr-reviewer.git
+git clone https://github.com/Lastron2000/open-pr-reviewer.git
 cd open-pr-reviewer
 python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\Scripts\activate

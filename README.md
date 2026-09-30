@@ -27,6 +27,25 @@ code to a third-party server. Open PR Reviewer is different:
 - **Configurable** — pick the model, review focus, comment volume, and labels.
 - **Composable** — use it as a GitHub Action, a CLI, or a library in your own tooling.
 
+## Why I built this
+
+I maintain small open-source projects in my spare time, and I kept running into the
+same problem: I'd open a PR, and then nothing would happen. Months later I'd dig
+through my own history and realize nobody ever reviewed it. The code just got merged.
+
+It's not that I don't care about review. It's that open source built on evenings and
+weekends leaves no bandwidth to sit and read other people's diffs. The tools that
+do exist are either priced per seat, or they ship your code to a third-party
+server — neither of which works for a small project, and the second one I just
+wasn't comfortable with.
+
+So the goal here is narrow: make "open a PR, get a review in ten minutes" the
+default behavior instead of the exception.
+
+**This project is early.** 0 stars, 18 passing tests, and no real production
+battle-testing yet. If you try it and it breaks, that's genuinely useful
+information to me — please open an issue.
+
 ## Features
 
 - ✅ **Inline code review** — comments are anchored to the exact diff lines.
@@ -62,7 +81,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Run Open PR Reviewer
-        uses: yourname/open-pr-reviewer@v0.1.0
+        uses: Lastron2000/open-pr-reviewer@v0.1.0
         with:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -158,7 +177,7 @@ pull_request → checkout → open-pr-reviewer → GitHub API → OpenAI → inl
 ## Development
 
 ```bash
-git clone https://github.com/yourname/open-pr-reviewer.git
+git clone https://github.com/Lastron2000/open-pr-reviewer.git
 cd open-pr-reviewer
 pip install -e ".[dev]"
 pytest
