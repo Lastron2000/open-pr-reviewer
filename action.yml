@@ -1,0 +1,86 @@
+name: "Open PR Reviewer"
+description: "Automated AI pull request review using OpenAI. Free, open source, runs in GitHub Actions."
+author: "open-pr-reviewer maintainers"
+
+inputs:
+  github_token:
+    description: "GitHub token with pull request read/write permissions. Defaults to GITHUB_TOKEN."
+    required: false
+    default: ${{ github.token }}
+  openai_api_key:
+    description: "OpenAI API key used to run the review."
+    required: true
+  model:
+    description: "OpenAI model to use."
+    required: false
+    default: "gpt-4o-mini"
+  max_comments:
+    description: "Maximum number of inline comments to post."
+    required: false
+    default: "10"
+  comment_threshold:
+    description: "Minimum confidence (0-1) for reporting an issue."
+    required: false
+    default: "0.7"
+  labels:
+    description: "Comma-separated labels to apply to reviewed pull requests."
+    required: false
+    default: "ai-reviewed"
+  check_for_bugs:
+    description: "Check for correctness bugs."
+    required: false
+    default: "true"
+  check_for_security:
+    description: "Check for security vulnerabilities."
+    required: false
+    default: "true"
+  check_for_style:
+    description: "Check for style and maintainability problems."
+    required: false
+    default: "false"
+  extra_instructions:
+    description: "Additional instructions appended to the review prompt."
+    required: false
+    default: ""
+  config_path:
+    description: "Path to a YAML config file in the repository."
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    - name: Install open-pr-reviewer
+      shell: bash
+      run: pip install --quiet git+"${{ github.server_url }}/${{ github.repository }}.git"
+
+    - name: Run review
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        OPENAI_API_KEY: ${{ inputs.openai_api_key }}
+        INPUT_MODEL: ${{ inputs.model }}
+        INPUT_MAX_COMMENTS: ${{ inputs.max_comments }}
+        INPUT_COMMENT_THRESHOLD: ${{ inputs.comment_threshold }}
+        INPUT_LABELS: ${{ inputs.labels }}
+        INPUT_CHECK_FOR_BUGS: ${{ inputs.check_for_bugs }}
+        INPUT_CHECK_FOR_SECURITY: ${{ inputs.check_for_security }}
+        INPUT_CHECK_FOR_STYLE: ${{ inputs.check_for_style }}
+        INPUT_EXTRA_INSTRUCTIONS: ${{ inputs.extra_instructions }}
+      run: |
+        args=()
+        if [ -n "${{ github.event.pull_request.number }}" ]; then
+          args+=(--pull-number "${{ github.event.pull_request.number }}")
+        fi
+        if [ -n "${{ inputs.config_path }}" ]; then
+          args+=(--config "${{ inputs.config_path }}")
+        fi
+        open-pr-reviewer "${args[@]}"

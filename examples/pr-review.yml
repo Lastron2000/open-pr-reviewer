@@ -1,0 +1,31 @@
+# Example configuration for open-pr-reviewer.
+# Copy this file to .github/pr-review.yml and adjust as needed.
+
+# OpenAI model used for the review.
+model: gpt-4o-mini
+
+# Maximum number of inline comments posted on a pull request.
+max_comments: 10
+
+# Only report issues with confidence at least this value (0-1).
+comment_threshold: 0.7
+
+# Whether to post any review at all. Set to false to run in dry-run mode.
+enabled: true
+
+# Labels applied to reviewed pull requests.
+labels:
+  - ai-reviewed
+
+# Post a human-readable summary comment.
+summarize: true
+
+# Review focus areas.
+check_for_bugs: true
+check_for_security: true
+check_for_style: false
+
+# Extra instructions appended to the review prompt.
+extra_instructions: >
+  Prefer concrete, actionable feedback. Reference function names and line
+  numbers. Do not request changes for subjective preferences.

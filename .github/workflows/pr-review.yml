@@ -1,0 +1,28 @@
+name: AI PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Open PR Reviewer
+        uses: ./
+        with:
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          model: gpt-4o-mini
+          max_comments: "10"
+          labels: "ai-reviewed"
+          check_for_bugs: "true"
+          check_for_security: "true"
+          check_for_style: "false"
