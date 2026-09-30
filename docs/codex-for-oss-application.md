@@ -1,94 +1,105 @@
-# Codex for Open Source — 申请文案
+# Codex for Open Source — 申请文案（定稿 · 已实测字符数）
 
 > 申请地址：https://openai.com/form/codex-for-oss
 > 项目地址：https://github.com/Lastron2000/open-pr-reviewer
+>
+> 三段文案均已用脚本实测字符数，压在 500 限制内（489 / 495 / 490）。
+> 表单是纯前端提交，字段和限制是从真实页面抓的。
 
 ---
 
-## 关于这三段答案
+## 表单全字段（实测）
 
-审核的人一天要看几百份申请。写得漂亮但空洞的，一眼被划走——"我们致力于为开发者提供优质体验"这种话谁都能写，能写的人却不会这么写。
+| # | 字段（原文） | 必填 | 填什么 |
+|---|---|---|---|
+| 1 | First name | ✅ | 你的名，拼音 |
+| 2 | Last name | ✅ | 你的姓，拼音 |
+| 3 | Email | ✅ | **必须是 ChatGPT 账号那个邮箱** |
+| 4 | GitHub username | ✅ | `Lastron2000` |
+| 5 | GitHub repository URL | ✅ | `https://github.com/Lastron2000/open-pr-reviewer` |
+| 6 | Describe your role | ✅ | 选 **Primary maintainer** |
+| 7 | Why does this repository qualify? | ✅ | 限 500 → 贴 A |
+| 8 | I'm interested in... | 可选 | **两个都勾**（Codex Security + API credits） |
+| 9 | OpenAI Organization ID | ✅ | **要登录平台查** |
+| 10 | How will you use API credits? | ✅ | 限 500 → 贴 B |
+| 11 | Anything else we should know? | 可选 | 限 500 → 贴 C |
 
-真正让人停下来的是**具体到能看见细节的话**：你实际跑过什么、踩过哪个坑、打算拿这 6 个月干哪件具体的事。细节没法编。
-
-所以下面这三段，我刻意写得短、写得具体。**你照着改，但别原样抄**——改成你说话的习惯，你才说得来。改完念一遍，念着别扭的句子就重写。
+**注意**：第 7 栏官方明确要"star 数、月下载量、为什么对生态重要"。
+所以别绕开数字说话——藏不住，审核点进主页就看得到。
 
 ---
 
-## 1. 你的角色（What is your role?）
+## A. Why does this repository qualify? — 489 字符
 
-> 我是这个项目的作者，也是目前唯一的维护者。项目从第一个 commit 开始就是我在写，代码、文档、CI 配置都是我自己在维护。issue 和 PR 我自己在处理。
-
-**为什么这么写**：官方明确说"如果不是核心维护者，也可以提名其他维护者"。反过来看——你说是唯一维护者，就等于主动揽下"这事只有我在管"的重量。审核看到"唯一"会想：这人真在干活。而如果你写"我们团队"，仓库里只有一个人，逻辑对不上，反而可疑。
-
----
-
-## 2. 项目为什么有资格（Why is your project eligible?）
-
-> Open PR Reviewer 是一个 MIT 协议的开源项目，用 OpenAI 自动评审 Pull Request。它跟市面上同类工具的区别是：代码不经过任何第三方服务器，评审在用户自己的 GitHub Actions 里跑，换成自己的 API key 只要改一行 workflow。
->
-> 我写它是因为我自己的项目卡在这个问题上——我做的都是业余时间的开源项目，PR 提完基本没人看，半年后翻记录才发现代码就这么合进去了。我想让"提交完 PR 十分钟收到 review"变成默认行为，而不是靠运气。
->
-> 我知道这个理由听起来很个人化。开源作者大多是业余时间做项目，自己都忙不过来，确实没余力天天盯别人的 diff。但这就是问题本身——我找不到别人，只能自己动手。
->
-> 目前项目很新：24 个文件，18 个测试全过，star 还是 0。这是我第一个真正想维护下去的开源项目，所以打算认真做下去，不只是想拿额度。
+```
+Open PR Reviewer is an MIT-licensed tool that reviews pull requests with OpenAI. Unlike paid reviewers, the diff goes straight to your own API key - nothing touches a third-party server. I built it after noticing PRs on my own side projects sat unreviewed for months, so I wanted "review in ten minutes" to be the default. New project: 18 tests pass, 0 stars, not yet battle-tested in production. Still fully functional, and I plan to maintain it properly rather than just collect credits.
+```
 
 **为什么这么写**：
-- 第一段说清差异点（不走第三方服务器），这是真实的、也是唯一站得住的差异化
-- 第二段是**动机**。审核想看的是"你为什么在乎这件事"，不是"这东西有什么功能"。写"我自己的项目卡在这"，比写"解决行业痛点"可信一百倍
-- 第三段**主动承认 star 是 0**。反直觉但有效——申请 6 个月 Pro 的人里，夸自己项目很火的要么是刷的要么是二手的。诚实承认早期，反而显得不是来凑数的。藏着不提，等审核自己去翻仓库，那才叫找死
-- 第四段解释了"为什么个人化"——把可能的减分项（听起来像个人项目）转成加分项（这就是问题本身的来源）
+- 差异化放第一句：不过第三方服务器，这是唯一站得住的技术理由
+- 动机放中间：我自己的项目卡在这，比"解决行业痛点"可信
+- 主动报 0 star + 承认没实战验证。反直觉但有效——夸自己项目很火的要么刷要么二手，诚实反而像真来办事的。**藏着不提才叫找死**
+- 收尾"maintain it properly rather than just collect credits"：直接回应审核的顾虑
 
 ---
 
-## 3. 你打算怎么用 API 额度（How will you use the API credits?）
+## B. How will you use API credits for your project? — 495 字符
 
-具体点说，是这三件事：
->
-> **一、把评审意见变成提示词。** 6 个月里 Open PR Reviewer 会跑几百次评审，我想把收集到的误报和漏报整理出来，反过来调 `prompts.py` 里的评审提示词——哪种措辞太啰嗦、哪种问题模型看不见、置信度阈值该定多少，这些得有真实数据才知道。现在那个 0.7 是我拍脑袋定的。
->
-> **二、跑维护流程。** 用 Codex 处理日常维护：审 incoming PR、分类和回复 issue、跑测试、发 release。这些活现在占我每周大概两三小时，我想把它们交出去，腾出时间写代码而不是搬砖。
->
-> **三、补贴别人的项目。** 这条最实在。我自己那点调用量其实吃不完 6 个月的额度，所以我打算把剩下的用在一件事上：帮那些没有 API key 的小开源仓库跑评审。我自己当初就是卡在没预算才没配 AI 评审，现在我想把这条路让别人也走一遍。
+```
+Three things. First, six months of real reviews will show what the model misses, so I can tune the prompt with data instead of guessing - the 0.7 threshold in models.py is a guess today. Second, maintenance: reviewing PRs, triaging issues, running tests - two to three hours a week I would rather spend on code. Third, my own usage will not eat six months of credits, so I will spend the rest reviewing small repos with no API key. I was there myself, and the point is letting others try it too.
+```
 
 **为什么这么写**：
-- 第一条给了**具体到可验证的抓手**：0.7 这个阈值是我真写进代码的（见 `models.py` 的 `DEFAULT_CONFIG`）。说"要调优提示词"是空话，说"0.7 是拍脑袋定的，我要用数据定它"是实话
-- 第二条给了**可量化的现状**（每周两三小时）和**明确目标**（写代码不是搬砖）。有对比才叫计划
-- 第三条是**最强的动机**——"我自己吃不完，分给别人"。这一条能同时证明三件事：你不是冲着白拿额度来的、你懂开源互助、你的项目有真实用户群。审核最想放心的就是这种申请
+- 每段都有**可核实的抓手**：`0.7` 真在 `models.py` 里、`两到三小时/周` 是真实维护成本
+- 说"要调优提示词"是空话；说"0.7 是我拍的，要用数据定它"是实话
+- 第三段是**最强的动机**：额度自己吃不完，分给别人。一句话证明三件事——你不是冲着白拿来的、你懂互助、你的项目有真实用户
 
 ---
 
-## 提交前自查
+## C. Anything else we should know? — 490 字符
 
-- [ ] 三段回答都**改成了自己的说话方式**，不是原样复制
-- [ ] 念一遍，念着别扭的句子重写
-- [ ] 确认没有占位符残留
-- [ ] 项目地址能打开，README 里没有 `yourname` 这类占位符
-- [ ] 如果拿到 star，把真实数字写进去（**没有就别写，别编**）
+```
+The repository is new, so I will not overstate its maturity. What I can commit to: the code is real and tested, I am the sole maintainer and will respond to issues, and I will report what actually happens when real users try it. If it turns out the tool does not work well, I would rather find that out and fix it than keep the appearance of an active project. I am applying because I want to keep building this, and the credits let me do it on evenings and weekends the way I actually can.
+```
 
-## 想提高通过率的话
-
-官方原话是："如果项目不完全符合标准，但在生态中扮演重要角色，仍建议申请并说明原因。"
-
-这说明标准是**弹性**的。下面这些是加分项，不是必需项：
-
-**1. 攒真实使用证据（最有效）**
-
-去 V2EX 或 Reddit 发帖，把链接贴在 issue 或 README 里。哪怕 3 个 star 也比 0 强——它证明有人真用了，而不是你自己搭的空壳。
-
-**2. 让它先在真实项目里跑起来**
-
-用 GitHub Actions 在你自己的其他仓库（比如 `home-renovation-notes`）里启用这个 action，把运行结果贴出来。这是最硬的证据：**有真实调用记录**。
-
-**3. 多提交一次**
-
-如果两周没回音，可以礼貌地重新申请，并在说明里写补充了什么进展。这不算骚扰，是表示你还在维护。
+**为什么建议填**：
+这是唯一能**主动交代弱点**的地方。上面两栏都在讲项目好，这栏讲"我清楚它现在什么水平、会怎么对待它"。审核看到前面是新人申请、后面主动说"我不装成熟"，可信度立刻不一样。
 
 ---
 
-## 一句话总结
+## 提交前必做的两件事
 
-申请的核心不是把自己包装得多厉害，而是**让审核相信三件事**：
-这人真在写代码、这项目真有人用、这 6 个月他真会用在刀刃上。
+### 1. 确认 GitHub 资料为公开（审核会核对，私有直接拒）
 
-上面三段分别对上了这三点。改的时候保住这个骨架，填你自己的细节进去。
+- 主页：https://github.com/settings/profile → `Public profile` 打开
+- 仓库：已是 public，确认没误设
+
+### 2. 查 OpenAI Organization ID
+
+登录 [platform.openai.com/settings/organization](https://platform.openai.com/settings/organization)，
+找形如 `org-xxxxxxxxxxxx` 的 ID。没建过组织的话，开卡后默认会生成个人组织，照着取。
+
+### 3. 贴表
+
+| 字段 | 贴哪段 |
+|---|---|
+| Why does this repository qualify? | A |
+| How will you use API credits? | B |
+| Anything else we should know? | C |
+
+其余字段照上面表格填。`First name` / `Last name` 用拼音，
+`Email` 填 ChatGPT 账号那个，`role` 选 `Primary maintainer`，`I'm interested in` 两个都勾。
+
+---
+
+## 提交之后
+
+1. **盯邮箱含垃圾箱**。官方说滚动审核，快的一两周，慢的一个月。
+2. **两周没回音**可礼貌重投，在补充说明里写这期间做了什么。
+3. **别买 star**。刷来的时间分布异常，审核一眼看出；追问"有谁在用"就露馅。
+   自然攒的 10 个真星比 200 个刷的管用。
+
+## 提通过率最狠的一招
+
+在你自己另一个仓库（`home-renovation-notes`）挂上这个 action 跑一次，
+把结果贴进 README。**有真实调用记录**比任何文案都硬——证明不是空壳。
